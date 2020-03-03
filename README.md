@@ -5,6 +5,7 @@ Last updated: 2020-03-03
 
 ``` r
 lifespan_plot <- function(BIRTHDAY = NULL, lifespan = 88, extra_motivation = FALSE){
+  
   suppressPackageStartupMessages({
     require(waffle)
     require(ggplot2)
@@ -33,11 +34,21 @@ lifespan_plot <- function(BIRTHDAY = NULL, lifespan = 88, extra_motivation = FAL
   lifespan_plot <- waffle(parts, rows = 52, flip = T, colors = c("darkgrey","black"))+theme(legend.position = "none")
   
   if(extra_motivation) {
-    motivation_text <- 
-      paste0("You are "
-             , scales::percent(WEEKS_SINCE_BORN/TOTAL_WEEKS_LIFESPAN)
-             ," through a ",lifespan
-             , " year life")
+    
+    if(lifespan%/%10==8){
+      motivation_text <- 
+        paste0("You are "
+               , scales::percent(WEEKS_SINCE_BORN/TOTAL_WEEKS_LIFESPAN)
+               ," through an ",lifespan
+               , " year life")
+    } else {
+      
+      motivation_text <- 
+        paste0("You are "
+               , scales::percent(WEEKS_SINCE_BORN/TOTAL_WEEKS_LIFESPAN)
+               ," through a ",lifespan
+               , " year life")
+    }
     
     lifespan_plot <- lifespan_plot+labs(title = motivation_text)
   }
