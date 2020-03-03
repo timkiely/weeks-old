@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+Last updated: `r Sys.Date()`
+
 ```{r}
 
 library(waffle)
